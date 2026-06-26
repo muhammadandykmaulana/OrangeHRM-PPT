@@ -131,9 +131,9 @@
                         </tr>
                         <tr class="hover:bg-gray-50 transition bg-gray-50/50">
                             <td class="p-4 text-center font-bold text-gray-600">TC-02</td>
-                            <td class="p-4 font-medium text-gray-800">Tambah karyawan tanpa mengisi field wajib (First Name)</td>
-                            <td class="p-4 text-gray-600">1. Masuk menu PIM > Add Employee.<br>2. Kosongkan First Name, isi field lain.<br>3. Klik Save.</td>
-                            <td class="p-4 text-red-600 font-medium">Sistem menolak penyimpanan, muncul validasi "Required" di bawah field First Name.</td>
+                            <td class="p-4 font-medium text-gray-800">Validasi autentikasi login gagal</td>
+                            <td class="p-4 text-gray-600">1. Buka halaman portal login.<br>2. Input username & password asal-asalan.<br>3. Submit/Klik Login.</td>
+                            <td class="p-4 text-red-600 font-medium">Pesan "Invalid credentials" muncul dengan teks merah.</td>
                         </tr>
                         <tr class="hover:bg-gray-50 transition">
                             <td class="p-4 text-center font-bold text-gray-600">TC-03</td>
@@ -222,7 +222,6 @@
                         <p class="text-sm text-gray-700 mb-4 bg-gray-50 p-3 rounded border border-gray-100"><strong>Catatan:</strong> ${notes}</p>
                         <div class="mt-auto relative group cursor-pointer border-2 border-dashed border-gray-300 rounded-lg overflow-hidden bg-gray-100 flex-1 min-h-[200px] flex justify-center items-center hover:border-blue-400 transition" 
                              onclick="openModal('${imgSrc}')" title="Klik untuk memperbesar gambar">
-                            <!-- PLACEHOLDER GAMBAR - Silakan ganti src di bawah dengan link gambar aslinya nanti -->
                             <img src="${imgSrc}" class="object-cover w-full h-full" alt="${id}">
                             <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex justify-center items-center">
                                 <i class="fas fa-search-plus text-white text-4xl transform scale-50 group-hover:scale-100 transition duration-300"></i>
@@ -239,8 +238,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1" id="grid-3"></div>
             <script>
                 document.getElementById('grid-3').innerHTML = 
-                    getResultCardHTML('TC-01', 'Tambah Karyawan Lengkap', 'PASS', 'Data tersimpan, dialihkan ke Personal Details. Fitur stabil.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-01\n(Klik+untuk+Zoom)') +
-                    getResultCardHTML('TC-02', 'Tambah Karyawan Form Kosong', 'PASS', 'Muncul span error "Required" warna merah. Validasi front-end berfungsi baik.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-02\n(Klik+untuk+Zoom)');
+                    getResultCardHTML('TC-01', 'Tambah Karyawan Lengkap', 'PASS', 'Data tersimpan, dialihkan ke Personal Details. Fitur stabil.', 'https://drive.google.com/thumbnail?id=1v5xOPl86784Ep3ZFpNIEENde91u_u17x&sz=w1000') +
+                    getResultCardHTML('TC-02', 'Validasi Autentikasi Login Gagal', 'PASS', 'Pesan "Invalid credentials" muncul dengan teks merah. Dokumentasi: Halaman portal login, input username & password asal-asalan. Pasca submit login (gagal masuk). Validasi berjalan baik.', 'https://drive.google.com/thumbnail?id=1e3jn5P--U8pbIt1bVJxDHzaVViS9kTv5&sz=w1000');
             </script>
         </div>
 
@@ -250,8 +249,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1" id="grid-4"></div>
             <script>
                 document.getElementById('grid-4').innerHTML = 
-                    getResultCardHTML('TC-03', 'Pencarian Karyawan (ID)', 'PASS', 'Data terfilter sesuai ID karyawan yang diinput. Fungsi pencarian normal.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-03\n(Klik+untuk+Zoom)') +
-                    getResultCardHTML('TC-04', 'Tambah Karyawan Form Kosong', 'PASS', 'Sama seperti TC-02, muncul span error "Required". Validasi front-end berfungsi baik.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-04\n(Klik+untuk+Zoom)');
+                    getResultCardHTML('TC-03', 'Pencarian Karyawan (ID)', 'PASS', 'Data terfilter sesuai ID karyawan yang diinput. Fungsi pencarian normal.', 'https://drive.google.com/thumbnail?id=1wjAPnE19XM1DcCyXpuPiberac5j1UCLi&sz=w1000') +
+                    getResultCardHTML('TC-04', 'Tambah Karyawan Form Kosong', 'PASS', 'Sama seperti TC-02, muncul span error "Required". Validasi front-end berfungsi baik.', 'https://drive.google.com/thumbnail?id=1s7FFHGO8NYyIYHWAtiRpkGcr24Z85ft5&sz=w1000');
             </script>
         </div>
 
@@ -261,8 +260,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1" id="grid-5"></div>
             <script>
                 document.getElementById('grid-5').innerHTML = 
-                    getResultCardHTML('TC-05', 'Assign Leave Valid', 'PASS', 'Muncul notifikasi pop-up hijau "Successfully Saved". Diarahkan ke awal form.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-05\n(Klik+untuk+Zoom)') +
-                    getResultCardHTML('TC-06', 'Assign Leave Invalid Date', 'PASS', 'Sistem tidak mengizinkan assign cuti "To Date" lebih lampau dari "From Date". Validasi berjalan baik.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-06\n(Klik+untuk+Zoom)');
+                    getResultCardHTML('TC-05', 'Assign Leave Valid', 'PASS', 'Muncul notifikasi pop-up hijau "Successfully Saved". Diarahkan ke awal form.', 'https://drive.google.com/thumbnail?id=1Gunm6E1EOCKH61iu3zV-bPfIXgSv9xc4&sz=w1000') +
+                    getResultCardHTML('TC-06', 'Assign Leave Invalid Date', 'PASS', 'Sistem tidak mengizinkan assign cuti "To Date" lebih lampau dari "From Date". Validasi berjalan baik.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-06\n(Gambar+belum+tersedia)');
             </script>
         </div>
 
@@ -272,8 +271,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1" id="grid-6"></div>
             <script>
                 document.getElementById('grid-6').innerHTML = 
-                    getResultCardHTML('TC-07', 'Update Entitlement', 'PASS', 'Berhasil menambahkan jatah cuti karyawan.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-07\n(Klik+untuk+Zoom)') +
-                    getResultCardHTML('TC-08', 'Lihat Entitlement', 'PASS', 'Tabel entitlement muncul sesuai yang terdata pada database.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-08\n(Klik+untuk+Zoom)');
+                    getResultCardHTML('TC-07', 'Update Entitlement', 'PASS', 'Berhasil menambahkan jatah cuti karyawan.', 'https://drive.google.com/thumbnail?id=15miI-fGFEdu5obHLyrn3DPv4QTSwy0XD&sz=w1000') +
+                    getResultCardHTML('TC-08', 'Lihat Entitlement', 'PASS', 'Tabel entitlement muncul sesuai yang terdata pada database.', 'https://drive.google.com/thumbnail?id=1D2rZSQ71JAtqVZg_2UsoZA1OeLEawUN5&sz=w1000');
             </script>
         </div>
 
@@ -283,8 +282,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1" id="grid-7"></div>
             <script>
                 document.getElementById('grid-7').innerHTML = 
-                    getResultCardHTML('TC-09', 'Download Personal Data', 'PASS', 'Pada menu Maintenance data personal berhasil di download.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-09\n(Klik+untuk+Zoom)') +
-                    getResultCardHTML('TC-10', 'Cancel Leave Request', 'PASS', 'Popup konfirmasi muncul, setelah confirm tampil "Success 1 Leave Request Cancelled".', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-10\n(Klik+untuk+Zoom)');
+                    getResultCardHTML('TC-09', 'Download Personal Data', 'PASS', 'Pada menu Maintenance data personal berhasil di download.', 'https://drive.google.com/thumbnail?id=1aTfAFZtsndlsybivOISyfZUU-fgXGLJE&sz=w1000') +
+                    getResultCardHTML('TC-10', 'Cancel Leave Request', 'PASS', 'Popup konfirmasi muncul, setelah confirm tampil "Success 1 Leave Request Cancelled".', 'https://drive.google.com/thumbnail?id=1i6wfj_0TB0I1a5QOoNgkzw6z7unfvLgY&sz=w1000');
             </script>
         </div>
 
@@ -337,7 +336,7 @@
                             <span class="bg-green-100 text-green-800 font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 mr-3">3</span>
                             <div>
                                 <strong class="block text-gray-900 text-lg">Keputusan Release (LAYAK)</strong>
-                                Secara keseluruhan aplikasi berjalan baik dan smooth. Aplikasi ini sudah layak dirilis ke tahap Production dengan catatan developer memberikan patch validasi minor di sprint berikutnya.
+                                Secara keseluruhan aplikasi berjalan baik dan smooth. Aplikasi ini sudah layak dirilis ke tahap Production.
                             </div>
                         </li>
                     </ol>
