@@ -52,7 +52,7 @@
         <div class="flex-1 overflow-y-auto py-4 space-y-2 px-3">
             <button onclick="goToSlide(0)" class="nav-item w-full flex items-center space-x-3 p-3 rounded-lg bg-blue-600 text-white shadow-md" id="nav-0">
                 <i class="fas fa-home w-6 text-center text-lg"></i>
-                <span class="nav-text text-sm font-semibold whitespace-nowrap text-left flex-1">Beranda</span>
+                <span class="nav-text text-sm font-semibold whitespace-nowrap text-left flex-1">Halaman</span>
             </button>
             <button onclick="goToSlide(1)" class="nav-item w-full flex items-center space-x-3 p-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white" id="nav-1">
                 <i class="fas fa-list-ol w-6 text-center text-lg"></i>
@@ -308,7 +308,7 @@
                     </ul>
                     <div class="mt-8 p-4 bg-green-500 text-white font-bold rounded-lg text-center shadow-md flex items-center justify-center space-x-2 text-lg">
                         <i class="fas fa-rocket"></i>
-                        <span>Recommendation: CONDITIONAL GO</span>
+                        <span>Recommendation: LAYAK</span>
                     </div>
                 </div>
 
@@ -336,7 +336,7 @@
                         <li class="flex items-start">
                             <span class="bg-green-100 text-green-800 font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 mr-3">3</span>
                             <div>
-                                <strong class="block text-gray-900 text-lg">Keputusan Release (Conditional GO)</strong>
+                                <strong class="block text-gray-900 text-lg">Keputusan Release (LAYAK)</strong>
                                 Secara keseluruhan aplikasi berjalan baik dan smooth. Aplikasi ini sudah layak dirilis ke tahap Production dengan catatan developer memberikan patch validasi minor di sprint berikutnya.
                             </div>
                         </li>
@@ -347,6 +347,9 @@
 
         <!-- Tombol Kontrol Bawah (Floating) -->
         <div class="absolute bottom-8 right-8 flex space-x-3 z-10">
+            <button onclick="toggleFullScreen()" id="fullscreenBtn" class="bg-slate-800 p-4 rounded-full shadow-xl hover:bg-slate-700 text-white transition focus:outline-none flex items-center justify-center" title="Layar Penuh (Fullscreen)">
+                <i class="fas fa-expand text-lg"></i>
+            </button>
             <button onclick="prevSlide()" class="bg-white p-4 rounded-full shadow-xl border hover:bg-gray-50 text-gray-700 transition focus:outline-none flex items-center justify-center" title="Slide Sebelumnya">
                 <i class="fas fa-chevron-left text-lg"></i>
             </button>
@@ -479,6 +482,32 @@
                 // Jika modal tertutup (mode presentasi)
                 if (e.key === 'ArrowRight') nextSlide();
                 if (e.key === 'ArrowLeft') prevSlide();
+                if (e.key === 'f' || e.key === 'F') toggleFullScreen();
+            }
+        });
+
+        /* --- Logika Fullscreen --- */
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Listener untuk mengubah ikon tombol saat state fullscreen berubah (misal ditekan ESC)
+        document.addEventListener('fullscreenchange', () => {
+            const btnIcon = document.querySelector('#fullscreenBtn i');
+            if (document.fullscreenElement) {
+                btnIcon.classList.remove('fa-expand');
+                btnIcon.classList.add('fa-compress');
+            } else {
+                btnIcon.classList.remove('fa-compress');
+                btnIcon.classList.add('fa-expand');
             }
         });
     </script>
