@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentasi Hasil Pengujian - OrangeHRM</title>
+    <!-- Tailwind CSS untuk Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Kustomisasi Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        /* Animasi Sidebar */
+        #sidebar { transition: width 0.3s ease-in-out; }
+        .sidebar-expanded { width: 18rem; }
+        .sidebar-shrunk { width: 5rem; }
+        .sidebar-shrunk .nav-text { opacity: 0; width: 0; overflow: hidden; display: none; }
+        
+        /* Animasi Transisi Slide */
+        .slide { animation: fadeSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Nav Item Styles */
+        .nav-item { transition: all 0.2s ease; }
+    </style>
+</head>
+<body class="bg-gray-100 flex h-screen overflow-hidden font-sans text-gray-800">
+
+    <!-- Sidebar Navigasi -->
+    <nav id="sidebar" class="bg-slate-900 text-white flex flex-col shadow-2xl z-20 shrink-0 sidebar-expanded">
+        <!-- Header Sidebar & Tombol Toggle -->
+        <div class="h-16 flex items-center justify-between px-4 bg-slate-950 border-b border-slate-800">
+            <div class="flex items-center">
+                <i class="fas fa-chart-line text-blue-400 text-xl ml-2"></i>
+                <span class="font-bold text-lg tracking-wider whitespace-nowrap ml-3 nav-text">PRESENTASI</span>
+            </div>
+            <button onclick="toggleSidebar()" class="text-gray-400 hover:text-white p-2 rounded focus:outline-none transition">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Daftar Menu Card -->
+        <div class="flex-1 overflow-y-auto py-4 space-y-2 px-3">
+            <button onclick="goToSlide(0)" class="nav-item w-full flex items-center space-x-3 p-3 rounded-lg bg-blue-600 text-white shadow-md" id="nav-0">
+                <i class="fas fa-home w-6 text-center text-lg"></i>
+                <span class="nav-text text-sm font-semibold whitespace-nowrap text-left flex-1">Beranda</span>
+            </button>
+            <button onclick="goToSlide(1)" class="nav-item w-full flex items-center space-x-3 p-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white" id="nav-1">
+                <i class="fas fa-list-ol w-6 text-center text-lg"></i>
+                <span class="nav-text text-sm font-semibold whitespace-nowrap text-left flex-1">Skenario (TC-01 - 05)</span>
+            </button>
+            <button onclick="goToSlide(2)" class="nav-item w-full flex items-center space-x-3 p-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white" id="nav-2">
+                <i class="fas fa-list-ul w-6 text-center text-lg"></i>
+                <span class="nav-text text-sm font-semibold whitespace-nowrap text-left flex-1">Skenario (TC-06 - 10)</span>
+            </button>
+            <button onclick="goToSlide(3)" class="nav-item w-full flex items-center space-x-3 p-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white" id="nav-3">
+                <i class="fas fa-check-circle w-6 text-center text-lg"></i>
+                <span class="nav-text text-sm font-semibold whitespace-nowrap text-left flex-1">Hasil: TC-01 & 02</span>
+            </button>
+            <button onclick="goToSlide(4)" class="nav-item w-full flex items-center space-x-3 p-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white" id="nav-4">
+                <i class="fas fa-check-circle w-6 text-center text-lg"></i>
+                <span class="nav-text text-sm font-semibold whitespace-nowrap text-left flex-1">Hasil: TC-03 & 04</span>
+            </button>
+            <button onclick="goToSlide(5)" class="nav-item w-full flex items-center space-x-3 p-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white" id="nav-5">
+                <i class="fas fa-check-circle w-6 text-center text-lg"></i>
+                <span class="nav-text text-sm font-semibold whitespace-nowrap text-left flex-1">Hasil: TC-05 & 06</span>
+            </button>
+            <button onclick="goToSlide(6)" class="nav-item w-full flex items-center space-x-3 p-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white" id="nav-6">
+                <i class="fas fa-check-circle w-6 text-center text-lg"></i>
+                <span class="nav-text text-sm font-semibold whitespace-nowrap text-left flex-1">Hasil: TC-07 & 08</span>
+            </button>
+            <button onclick="goToSlide(7)" class="nav-item w-full flex items-center space-x-3 p-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white" id="nav-7">
+                <i class="fas fa-check-circle w-6 text-center text-lg"></i>
+                <span class="nav-text text-sm font-semibold whitespace-nowrap text-left flex-1">Hasil: TC-09 & 10</span>
+            </button>
+            <button onclick="goToSlide(8)" class="nav-item w-full flex items-center space-x-3 p-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white" id="nav-8">
+                <i class="fas fa-chart-pie w-6 text-center text-lg"></i>
+                <span class="nav-text text-sm font-semibold whitespace-nowrap text-left flex-1">Kesimpulan & Analisis</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Konten Utama (Slides) -->
+    <main class="flex-1 relative bg-slate-50 overflow-hidden shadow-inner">
+        
+        <!-- Slide 0: Sampul -->
+        <div id="slide-0" class="slide h-full overflow-y-auto p-10 flex flex-col justify-center items-center">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4 tracking-tight">DOKUMEN HASIL PENGUJIAN</h1>
+                <h2 class="text-2xl md:text-3xl font-semibold text-gray-500">Pengujian Perangkat Lunak</h2>
+            </div>
+            <div class="bg-white border-l-8 border-blue-600 shadow-xl rounded-r-2xl p-8 md:p-10 w-full max-w-4xl">
+                <table class="w-full text-left text-lg text-gray-700 border-collapse">
+                    <tr class="border-b border-gray-100"><th class="py-4 w-1/3 text-gray-500 font-medium">Dosen</th><td class="py-4 font-semibold text-gray-800">: LUTHFIA SASKIA S.Tr.Kom., M.Eng.</td></tr>
+                    <tr class="border-b border-gray-100"><th class="py-4 align-top text-gray-500 font-medium">Nama / NIM</th><td class="py-4 font-semibold text-gray-800">: Muhammad Andyk Maulana / 1002240004<br>&nbsp;&nbsp;Ghalib Farras Ahmad / 1002240005</td></tr>
+                    <tr class="border-b border-gray-100"><th class="py-4 text-gray-500 font-medium">Jurusan</th><td class="py-4 font-semibold text-gray-800">: Teknologi Informasi</td></tr>
+                    <tr class="border-b border-gray-100"><th class="py-4 text-gray-500 font-medium">Website Target</th><td class="py-4 font-semibold text-blue-600 hover:underline"><a href="https://opensource-demo.orangehrmlive.com/" target="_blank">: OrangeHRM Demo</a></td></tr>
+                    <tr><th class="py-4 align-top text-gray-500 font-medium">Fokus Pengujian</th><td class="py-4 font-semibold text-gray-800">: Modul Authentication, PIM (Employee Data), Leave Management, Maintenance</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 1: Skenario 1-5 -->
+        <div id="slide-1" class="slide h-full overflow-y-auto p-10 hidden">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 pb-2 inline-block">Skenario Pengujian (TC-01 s/d TC-05)</h2>
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200">
+                <table class="w-full text-left">
+                    <thead class="bg-blue-900 text-white">
+                        <tr>
+                            <th class="p-4 w-20 text-center font-semibold">ID</th>
+                            <th class="p-4 w-1/4 font-semibold">Nama Skenario</th>
+                            <th class="p-4 w-1/3 font-semibold">Langkah Pengujian</th>
+                            <th class="p-4 font-semibold">Expected Result</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 text-sm">
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="p-4 text-center font-bold text-gray-600">TC-01</td>
+                            <td class="p-4 font-medium text-gray-800">Tambah karyawan baru (PIM) dengan data lengkap</td>
+                            <td class="p-4 text-gray-600">1. Masuk menu PIM > Add Employee.<br>2. Isi First Name, Last Name, ID.<br>3. Klik Save.</td>
+                            <td class="p-4 text-green-700 font-medium">Data karyawan berhasil disimpan dan dialihkan ke profil karyawan.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition bg-gray-50/50">
+                            <td class="p-4 text-center font-bold text-gray-600">TC-02</td>
+                            <td class="p-4 font-medium text-gray-800">Tambah karyawan tanpa mengisi field wajib (First Name)</td>
+                            <td class="p-4 text-gray-600">1. Masuk menu PIM > Add Employee.<br>2. Kosongkan First Name, isi field lain.<br>3. Klik Save.</td>
+                            <td class="p-4 text-red-600 font-medium">Sistem menolak penyimpanan, muncul validasi "Required" di bawah field First Name.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="p-4 text-center font-bold text-gray-600">TC-03</td>
+                            <td class="p-4 font-medium text-gray-800">Pencarian karyawan berdasarkan Employee ID</td>
+                            <td class="p-4 text-gray-600">1. Masuk menu PIM > Employee List.<br>2. Ketik ID di kolom Employee Id.<br>3. Klik Search.</td>
+                            <td class="p-4 text-green-700 font-medium">Tabel hanya menampilkan data karyawan dengan ID yang sesuai.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition bg-gray-50/50">
+                            <td class="p-4 text-center font-bold text-gray-600">TC-04</td>
+                            <td class="p-4 font-medium text-gray-800">Tambah karyawan tanpa mengisi field wajib (First Name)</td>
+                            <td class="p-4 text-gray-600">1. Masuk menu PIM > Add Employee.<br>2. Kosongkan First Name, isi field lain.<br>3. Klik Save.</td>
+                            <td class="p-4 text-red-600 font-medium">Sistem menolak penyimpanan, muncul validasi "Required".</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="p-4 text-center font-bold text-gray-600">TC-05</td>
+                            <td class="p-4 font-medium text-gray-800">Assign Leave (Cuti) dengan rentang tanggal valid</td>
+                            <td class="p-4 text-gray-600">1. Masuk menu Leave > Assign Leave.<br>2. Pilih Employee, Leave Type.<br>3. Isi From Date dan To Date berurutan.<br>4. Klik Assign.</td>
+                            <td class="p-4 text-green-700 font-medium">Pengajuan cuti berhasil disimpan ("Successfully Saved").</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 2: Skenario 6-10 -->
+        <div id="slide-2" class="slide h-full overflow-y-auto p-10 hidden">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 pb-2 inline-block">Skenario Pengujian (TC-06 s/d TC-10)</h2>
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200">
+                <table class="w-full text-left">
+                    <thead class="bg-blue-900 text-white">
+                        <tr>
+                            <th class="p-4 w-20 text-center font-semibold">ID</th>
+                            <th class="p-4 w-1/4 font-semibold">Nama Skenario</th>
+                            <th class="p-4 w-1/3 font-semibold">Langkah Pengujian</th>
+                            <th class="p-4 font-semibold">Expected Result</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 text-sm">
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="p-4 text-center font-bold text-gray-600">TC-06</td>
+                            <td class="p-4 font-medium text-gray-800">Assign Leave dengan To Date lebih awal dari From Date</td>
+                            <td class="p-4 text-gray-600">1. Leave > Assign Leave.<br>2. Isi From Date: 2026-06-20, To Date: 2026-06-15.<br>3. Klik Assign.</td>
+                            <td class="p-4 text-red-600 font-medium">Sistem menolak dan menampilkan pesan error validasi tanggal.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition bg-gray-50/50">
+                            <td class="p-4 text-center font-bold text-gray-600">TC-07</td>
+                            <td class="p-4 font-medium text-gray-800">Add / Update Leave Entitlement</td>
+                            <td class="p-4 text-gray-600">1. Admin > Leave > Entitlements > Add Entitlements<br>2. Pilih Employee & isi jatah cuti<br>3. Klik Save</td>
+                            <td class="p-4 text-green-700 font-medium">Muncul notifikasi "Successfully Saved" dan entitlement diupdate.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="p-4 text-center font-bold text-gray-600">TC-08</td>
+                            <td class="p-4 font-medium text-gray-800">Melihat Leave Entitlement Karyawan</td>
+                            <td class="p-4 text-gray-600">1. Leave > Entitlements > Employee Entitlements.<br>2. Pilih nama & Klik Search.</td>
+                            <td class="p-4 text-green-700 font-medium">Sistem menampilkan tabel sisa jatah cuti karyawan.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition bg-gray-50/50">
+                            <td class="p-4 text-center font-bold text-gray-600">TC-09</td>
+                            <td class="p-4 font-medium text-gray-800">Download Personal Data Karyawan (Maintenance)</td>
+                            <td class="p-4 text-gray-600">1. Admin > Maintenance > Access Records<br>2. Cari nama > Search > Download</td>
+                            <td class="p-4 text-green-700 font-medium">Data karyawan terpilih dan file personal data berhasil di download.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="p-4 text-center font-bold text-gray-600">TC-10</td>
+                            <td class="p-4 font-medium text-gray-800">Cancel Leave Request (Admin)</td>
+                            <td class="p-4 text-gray-600">1. Admin > Leave > Leave List<br>2. Pilih request klik Cancel<br>3. Konfirmasi popup</td>
+                            <td class="p-4 text-green-700 font-medium">Popup konfirmasi muncul, setelah confirm tampil "Success".</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Fungsi Bantuan Pembuat Template Hasil -->
+        <script>
+            function getResultCardHTML(id, title, status, notes, imgSrc) {
+                const isPass = status === 'PASS';
+                const color = isPass ? 'green' : 'red';
+                return `
+                <div class="bg-white rounded-xl shadow-lg flex flex-col border border-gray-100 overflow-hidden transform hover:-translate-y-1 transition duration-300">
+                    <div class="p-4 bg-${color}-50 border-b border-${color}-200 flex justify-between items-center">
+                        <h3 class="font-bold text-${color}-800 text-lg">${id}: ${title}</h3>
+                        <span class="px-4 py-1 bg-${color}-600 text-white rounded-full text-sm font-bold shadow-sm">${status}</span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col">
+                        <p class="text-sm text-gray-700 mb-4 bg-gray-50 p-3 rounded border border-gray-100"><strong>Catatan:</strong> ${notes}</p>
+                        <div class="mt-auto relative group cursor-pointer border-2 border-dashed border-gray-300 rounded-lg overflow-hidden bg-gray-100 flex-1 min-h-[200px] flex justify-center items-center hover:border-blue-400 transition" 
+                             onclick="openModal('${imgSrc}')" title="Klik untuk memperbesar gambar">
+                            <!-- PLACEHOLDER GAMBAR - Silakan ganti src di bawah dengan link gambar aslinya nanti -->
+                            <img src="${imgSrc}" class="object-cover w-full h-full" alt="${id}">
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex justify-center items-center">
+                                <i class="fas fa-search-plus text-white text-4xl transform scale-50 group-hover:scale-100 transition duration-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            }
+        </script>
+
+        <!-- Slide 3: Hasil 1-2 -->
+        <div id="slide-3" class="slide h-full overflow-y-auto p-10 hidden flex-col">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 pb-2 inline-block">Hasil Pengujian</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1" id="grid-3"></div>
+            <script>
+                document.getElementById('grid-3').innerHTML = 
+                    getResultCardHTML('TC-01', 'Tambah Karyawan Lengkap', 'PASS', 'Data tersimpan, dialihkan ke Personal Details. Fitur stabil.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-01\n(Klik+untuk+Zoom)') +
+                    getResultCardHTML('TC-02', 'Tambah Karyawan Form Kosong', 'PASS', 'Muncul span error "Required" warna merah. Validasi front-end berfungsi baik.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-02\n(Klik+untuk+Zoom)');
+            </script>
+        </div>
+
+        <!-- Slide 4: Hasil 3-4 -->
+        <div id="slide-4" class="slide h-full overflow-y-auto p-10 hidden flex-col">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 pb-2 inline-block">Hasil Pengujian</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1" id="grid-4"></div>
+            <script>
+                document.getElementById('grid-4').innerHTML = 
+                    getResultCardHTML('TC-03', 'Pencarian Karyawan (ID)', 'PASS', 'Data terfilter sesuai ID karyawan yang diinput. Fungsi pencarian normal.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-03\n(Klik+untuk+Zoom)') +
+                    getResultCardHTML('TC-04', 'Tambah Karyawan Form Kosong', 'PASS', 'Sama seperti TC-02, muncul span error "Required". Validasi front-end berfungsi baik.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-04\n(Klik+untuk+Zoom)');
+            </script>
+        </div>
+
+        <!-- Slide 5: Hasil 5-6 -->
+        <div id="slide-5" class="slide h-full overflow-y-auto p-10 hidden flex-col">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 pb-2 inline-block">Hasil Pengujian</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1" id="grid-5"></div>
+            <script>
+                document.getElementById('grid-5').innerHTML = 
+                    getResultCardHTML('TC-05', 'Assign Leave Valid', 'PASS', 'Muncul notifikasi pop-up hijau "Successfully Saved". Diarahkan ke awal form.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-05\n(Klik+untuk+Zoom)') +
+                    getResultCardHTML('TC-06', 'Assign Leave Invalid Date', 'PASS', 'Sistem tidak mengizinkan assign cuti "To Date" lebih lampau dari "From Date". Validasi berjalan baik.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-06\n(Klik+untuk+Zoom)');
+            </script>
+        </div>
+
+        <!-- Slide 6: Hasil 7-8 -->
+        <div id="slide-6" class="slide h-full overflow-y-auto p-10 hidden flex-col">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 pb-2 inline-block">Hasil Pengujian</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1" id="grid-6"></div>
+            <script>
+                document.getElementById('grid-6').innerHTML = 
+                    getResultCardHTML('TC-07', 'Update Entitlement', 'PASS', 'Berhasil menambahkan jatah cuti karyawan.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-07\n(Klik+untuk+Zoom)') +
+                    getResultCardHTML('TC-08', 'Lihat Entitlement', 'PASS', 'Tabel entitlement muncul sesuai yang terdata pada database.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-08\n(Klik+untuk+Zoom)');
+            </script>
+        </div>
+
+        <!-- Slide 7: Hasil 9-10 -->
+        <div id="slide-7" class="slide h-full overflow-y-auto p-10 hidden flex-col">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 pb-2 inline-block">Hasil Pengujian</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1" id="grid-7"></div>
+            <script>
+                document.getElementById('grid-7').innerHTML = 
+                    getResultCardHTML('TC-09', 'Download Personal Data', 'PASS', 'Pada menu Maintenance data personal berhasil di download.', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-09\n(Klik+untuk+Zoom)') +
+                    getResultCardHTML('TC-10', 'Cancel Leave Request', 'PASS', 'Popup konfirmasi muncul, setelah confirm tampil "Success 1 Leave Request Cancelled".', 'https://placehold.co/800x450/e2e8f0/475569?text=Bukti+Gambar+TC-10\n(Klik+untuk+Zoom)');
+            </script>
+        </div>
+
+        <!-- Slide 8: Summary -->
+        <div id="slide-8" class="slide h-full overflow-y-auto p-10 hidden">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 border-b-4 border-blue-500 pb-2 inline-block">Executive Summary & Analisis Kualitas</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Laporan Hasil Test -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl shadow border border-blue-100">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-clipboard-check text-3xl text-blue-600 mr-4"></i>
+                        <h3 class="font-bold text-2xl text-blue-900">Laporan Hasil Test</h3>
+                    </div>
+                    <ul class="space-y-4 text-lg text-gray-700">
+                        <li class="flex justify-between border-b border-blue-200 pb-2"><span>Total Test Case:</span> <strong class="text-blue-900">10 Test Cases</strong></li>
+                        <li class="flex justify-between border-b border-blue-200 pb-2"><span>Jumlah PASS:</span> <strong class="text-green-600">10 (100%)</strong></li>
+                        <li class="flex justify-between border-b border-blue-200 pb-2"><span>Jumlah FAIL:</span> <strong class="text-red-500">0 (0%)</strong></li>
+                        <li class="flex justify-between border-b border-blue-200 pb-2"><span>BLOCKED / NOT EXECUTED:</span> <strong>0/0</strong></li>
+                        <li class="flex justify-between pb-2"><span>Total Defect Ditemukan:</span> <strong>0</strong></li>
+                    </ul>
+                    <div class="mt-8 p-4 bg-green-500 text-white font-bold rounded-lg text-center shadow-md flex items-center justify-center space-x-2 text-lg">
+                        <i class="fas fa-rocket"></i>
+                        <span>Recommendation: CONDITIONAL GO</span>
+                    </div>
+                </div>
+
+                <!-- Analisis Kualitas -->
+                <div class="bg-white p-8 rounded-2xl shadow border border-gray-100">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-microscope text-3xl text-indigo-600 mr-4"></i>
+                        <h3 class="font-bold text-2xl text-gray-800">Analisis Kualitas Sistem</h3>
+                    </div>
+                    <ol class="space-y-6 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="bg-indigo-100 text-indigo-800 font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 mr-3">1</span>
+                            <div>
+                                <strong class="block text-gray-900 text-lg">Fungsionalitas Inti Stabil</strong>
+                                Seluruh modul utama yang diuji (CRUD data, izin/cancel cuti karyawan, otentikasi keamanan, maintenance, hingga pencarian & download data) berjalan dengan sangat baik.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-indigo-100 text-indigo-800 font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 mr-3">2</span>
+                            <div>
+                                <strong class="block text-gray-900 text-lg">Validasi Input Bekerja Maksimal</strong>
+                                Skenario negatif seperti pengosongan form wajib dan logika penanggalan cuti mundur berhasil ditangani oleh sistem dengan memberikan pesan error yang tepat.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-green-100 text-green-800 font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 mr-3">3</span>
+                            <div>
+                                <strong class="block text-gray-900 text-lg">Keputusan Release (Conditional GO)</strong>
+                                Secara keseluruhan aplikasi berjalan baik dan smooth. Aplikasi ini sudah layak dirilis ke tahap Production dengan catatan developer memberikan patch validasi minor di sprint berikutnya.
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tombol Kontrol Bawah (Floating) -->
+        <div class="absolute bottom-8 right-8 flex space-x-3 z-10">
+            <button onclick="prevSlide()" class="bg-white p-4 rounded-full shadow-xl border hover:bg-gray-50 text-gray-700 transition focus:outline-none flex items-center justify-center" title="Slide Sebelumnya">
+                <i class="fas fa-chevron-left text-lg"></i>
+            </button>
+            <button onclick="nextSlide()" class="bg-blue-600 p-4 rounded-full shadow-xl hover:bg-blue-700 text-white transition focus:outline-none flex items-center justify-center" title="Slide Berikutnya">
+                <i class="fas fa-chevron-right text-lg"></i>
+            </button>
+        </div>
+    </main>
+
+    <!-- Modal Zoom Gambar -->
+    <div id="imageModal" class="fixed inset-0 z-50 bg-black/90 hidden flex-col backdrop-blur-sm transition-all duration-300">
+        <!-- Toolbar Zoom -->
+        <div class="flex justify-end p-4 bg-gradient-to-b from-black/80 to-transparent absolute top-0 w-full z-10 space-x-3">
+            <span class="text-white/70 mr-auto self-center ml-4 hidden md:inline">Gunakan tombol atau scroll mouse untuk Zoom</span>
+            <button onclick="zoomIn()" class="bg-gray-800/80 text-white p-3 rounded-full hover:bg-blue-600 transition" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+            <button onclick="zoomOut()" class="bg-gray-800/80 text-white p-3 rounded-full hover:bg-blue-600 transition" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+            <button onclick="resetZoom()" class="bg-gray-800/80 text-white p-3 rounded-full hover:bg-blue-600 transition" title="Reset Zoom"><i class="fas fa-undo"></i></button>
+            <button onclick="closeModal()" class="bg-red-600/80 text-white p-3 rounded-full hover:bg-red-600 transition ml-6" title="Tutup"><i class="fas fa-times text-xl px-1"></i></button>
+        </div>
+        <!-- Kontainer Gambar -->
+        <div class="flex-1 overflow-auto flex items-center justify-center p-4 pt-20" id="modalWrapper">
+            <!-- Gambar diperbesar menggunakan lebar persentase (vw) untuk menghindari isu scrollbar -->
+            <img id="modalImg" src="" class="max-w-none transition-all duration-200 ease-out shadow-2xl rounded" style="width: 80vw;" alt="Zoomed Image">
+        </div>
+    </div>
+
+    <!-- Script Logika Aplikasi -->
+    <script>
+        const totalSlides = 9;
+        let currentSlideIndex = 0;
+
+        function goToSlide(index) {
+            // Sembunyikan slide aktif
+            document.getElementById(`slide-${currentSlideIndex}`).classList.add('hidden');
+            
+            // Ubah gaya tombol navigasi lama
+            const oldNav = document.getElementById(`nav-${currentSlideIndex}`);
+            oldNav.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+            oldNav.classList.add('text-slate-400', 'hover:bg-slate-800', 'hover:text-white');
+            
+            currentSlideIndex = index;
+            
+            // Tampilkan slide baru
+            document.getElementById(`slide-${currentSlideIndex}`).classList.remove('hidden');
+            
+            // Ubah gaya tombol navigasi baru
+            const newNav = document.getElementById(`nav-${currentSlideIndex}`);
+            newNav.classList.remove('text-slate-400', 'hover:bg-slate-800', 'hover:text-white');
+            newNav.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides - 1) goToSlide(currentSlideIndex + 1);
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) goToSlide(currentSlideIndex - 1);
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('sidebar-expanded')) {
+                sidebar.classList.remove('sidebar-expanded');
+                sidebar.classList.add('sidebar-shrunk');
+            } else {
+                sidebar.classList.remove('sidebar-shrunk');
+                sidebar.classList.add('sidebar-expanded');
+            }
+        }
+
+        /* --- Logika Zoom Gambar Modal --- */
+        let currentWidth = 80; // Persentase viewport width (vw)
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImg');
+
+        function openModal(src) {
+            modalImg.src = src;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            currentWidth = 80; // Reset ke ukuran awal
+            updateZoom();
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            modalImg.src = '';
+        }
+
+        function zoomIn() {
+            if(currentWidth < 250) currentWidth += 15;
+            updateZoom();
+        }
+
+        function zoomOut() {
+            if(currentWidth > 30) currentWidth -= 15;
+            updateZoom();
+        }
+
+        function resetZoom() {
+            currentWidth = 80;
+            updateZoom();
+        }
+
+        function updateZoom() {
+            modalImg.style.width = `${currentWidth}vw`;
+        }
+
+        // Event listener untuk scroll mouse pada modal
+        document.getElementById('modalWrapper').addEventListener('wheel', (e) => {
+            // Cegah scrolling halaman jika sedang mengarahkan kursor di atas gambar
+            if (e.ctrlKey || e.metaKey || true) { 
+                e.preventDefault();
+                if (e.deltaY < 0) {
+                    zoomIn();
+                } else {
+                    zoomOut();
+                }
+            }
+        }, { passive: false });
+
+        // Event listener Keyboard (Arrow untuk navigasi, Escape untuk tutup modal)
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('hidden')) {
+                // Jika modal terbuka
+                if (e.key === 'Escape') closeModal();
+                if (e.key === '+' || e.key === '=') zoomIn();
+                if (e.key === '-') zoomOut();
+            } else {
+                // Jika modal tertutup (mode presentasi)
+                if (e.key === 'ArrowRight') nextSlide();
+                if (e.key === 'ArrowLeft') prevSlide();
+            }
+        });
+    </script>
+</body>
+</html>
